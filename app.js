@@ -11,7 +11,7 @@ function isPrime(num) {
   return true;
 }
 
-app.post("/functions/check-prime", (req, res) => {
+app.post("/functions/checkPrime", (req, res) => {
   const { input } = req.body;
   if (typeof input !== "number") {
     return res
@@ -23,7 +23,7 @@ app.post("/functions/check-prime", (req, res) => {
   res.json({ output: result });
 });
 
-app.get("/functions/check-prime", (req, res) => {
+app.get("/functions/checkPrime", (req, res) => {
   const docs = {
     name: "check-prime",
     description: "Check if a given number is prime.",
