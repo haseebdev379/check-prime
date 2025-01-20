@@ -1,5 +1,4 @@
 const express = require("express");
-
 const app = express();
 app.use(express.json());
 
@@ -11,18 +10,19 @@ function isPrime(num) {
   return true;
 }
 
-app.post("/check-prime", (req, res) => {
+app.post("/functions/check-prime", (req, res) => {
   const { input } = req.body;
   if (typeof input !== "number") {
     return res
       .status(400)
       .json({ error: "Invalid input. Provide a valid number." });
   }
+
   const result = isPrime(input);
   res.json({ output: result });
 });
 
-app.get("/check-prime", (req, res) => {
+app.get("/functions/check-prime", (req, res) => {
   const docs = {
     name: "check-prime",
     description: "Check if a given number is prime.",
@@ -37,7 +37,12 @@ app.get("/check-prime", (req, res) => {
       example: true,
     },
   };
+
   res.json(docs);
 });
 
-module.exports = app;
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
